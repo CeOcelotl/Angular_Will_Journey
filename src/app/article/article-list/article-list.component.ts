@@ -35,7 +35,7 @@ export class ArticleListComponent {
   }
 
   onUpdateArticle(article: Article): void {
-    this.articleService.onDeleteArticle(article).subscribe(() => {
+    this.articleService.onUpdateArticle(article).subscribe(() => {
       this.articles = this.articles.map((item: Article) => {
         if (item.id == article.id) {
           return Object.assign({}, item, article);

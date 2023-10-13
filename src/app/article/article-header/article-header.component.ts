@@ -15,20 +15,20 @@ export class ArticleHeaderComponent implements OnChanges {
   article: Article = new Article();
 
   @Output()
-  delete: EventEmitter<Article> = new EventEmitter<Article>();
+  deleteArticle: EventEmitter<Article> = new EventEmitter<Article>();
 
   @Output()
-  titleChanged: EventEmitter<Article> = new EventEmitter<Article>();
+  updateArticle: EventEmitter<Article> = new EventEmitter<Article>();
 
   isEdit: boolean = false;
   originalItem: Article = new Article();
 
   onDeleteArticle(): void {
-    this.delete.emit(this.article);
+    this.deleteArticle.emit(this.article);
   }
 
   onEditTitle(): void {
-    this.titleChanged.emit(this.article);
+    this.updateArticle.emit(this.article);
   }
 
   onCancel(): void {

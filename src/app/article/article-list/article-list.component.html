@@ -5,8 +5,8 @@
 >
   <app-article-header
     [article]="article"
-    (delete)="onDeleteArticle($event)"
-    (titleChanged)="onUpdateArticle($event)"
+    (deleteArticle)="onDeleteArticle($event)"
+    (updateArticle)="onUpdateArticle($event)"
   ></app-article-header>
   <app-article-body [article]="article"></app-article-body>
 </article>

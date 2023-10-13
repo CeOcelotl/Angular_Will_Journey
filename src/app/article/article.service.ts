@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ArticleService {
+  private http: HttpClient = inject(HttpClient);
+  private apiUrl = 'http://localhost:4200/api/articles';
+
   onDeleteArticle(article: Article): Observable<Article> {
     return this.http.delete<Article>(`${this.apiUrl}/${article.id}`);
 }
@@ -14,14 +17,12 @@ export class ArticleService {
   getArticle():Observable<Article[]> {
     return this.http.get<Article[]>(`${this.apiUrl}`);
   }
+
+  onUpdateArticle(article: Article):Observable<Article>{
+    return this.http.put<Article>(`${this.apiUrl}/${article.id}`, article);
+  }
+
   setUrl(arg: string) {
     this.apiUrl = arg
   }
-
-  private http: HttpClient = inject(HttpClient);
-  private apiUrl = 'http://localhost:4200/api/articles';
-
-  // getData(): Observable<Article[]> {
-  //   return this.http.get<Article[]>(`${this.apiUrl}`);
-  // }
 }
