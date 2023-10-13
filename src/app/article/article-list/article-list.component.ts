@@ -21,26 +21,26 @@ export class ArticleListComponent {
   constructor() {
     this.articleService.setUrl('http://localhost:3000/articles/');
 
-    this.articleService.getArticle().subscribe((result: Article[]) => {
-      this.articles = result;
+    this.articleService.getArticle().subscribe((x) => {
+      this.articles = x;
     });
   }
 
   onDeleteArticle(article: Article): void {
-    this.articleService.onDeleteArticle(article).subscribe(() => {
-      this.articles = this.articles.filter((item: Article) => {
-        return item.id !== article.id;
+    this.articleService.deleteArticle(article).subscribe(() => {
+      this.articles = this.articles.filter((x) => {
+        return x.id !== article.id;
       });
     });
   }
 
   onUpdateArticle(article: Article): void {
-    this.articleService.onUpdateArticle(article).subscribe(() => {
-      this.articles = this.articles.map((item: Article) => {
-        if (item.id == article.id) {
-          return Object.assign({}, item, article);
+    this.articleService.updateArticle(article).subscribe(() => {
+      this.articles = this.articles.map((x) => {
+        if (x.id == article.id) {
+          return Object.assign({}, x, article);
         }
-        return item;
+        return x;
       });
     });
   }

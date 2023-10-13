@@ -7,22 +7,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ArticleService {
-  private http: HttpClient = inject(HttpClient);
-  private apiUrl = 'http://localhost:4200/api/articles';
+  #http: HttpClient = inject(HttpClient);
+  #apiUrl = '';
 
-  onDeleteArticle(article: Article): Observable<Article> {
-    return this.http.delete<Article>(`${this.apiUrl}/${article.id}`);
+  deleteArticle(article: Article): Observable<Article> {
+    return this.#http.delete<Article>(`${this.#apiUrl}/${article.id}`);
 }
 
   getArticle():Observable<Article[]> {
-    return this.http.get<Article[]>(`${this.apiUrl}`);
+    return this.#http.get<Article[]>(`${this.#apiUrl}`);
   }
 
-  onUpdateArticle(article: Article):Observable<Article>{
-    return this.http.put<Article>(`${this.apiUrl}/${article.id}`, article);
+  updateArticle(article: Article):Observable<Article>{
+    return this.#http.put<Article>(`${this.#apiUrl}/${article.id}`, article);
   }
 
-  setUrl(arg: string) {
-    this.apiUrl = arg
+  setUrl(url: string) {
+    this.#apiUrl = url
   }
 }

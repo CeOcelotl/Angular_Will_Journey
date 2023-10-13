@@ -36,9 +36,9 @@ export class ArticleHeaderComponent implements OnChanges {
     this.isEdit = false;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['article']) {
-      this.originalItem = changes['article'].currentValue;
+  ngOnChanges({article}: SimpleChanges): void {
+    if (article) {
+      this.originalItem = article.currentValue;
       this.article = Object.assign({}, this.originalItem);
     }
   }
