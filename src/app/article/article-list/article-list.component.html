@@ -1,1 +1,12 @@
-<p>article-list works!</p>
+<article
+  class="post"
+  id="post{{ idx }}"
+  *ngFor="let article of articles; let idx = index"
+>
+  <app-article-header
+    [article]="article"
+    (delete)="onDeleteArticle($event)"
+    (titleChanged)="onUpdateArticle($event)"
+  ></app-article-header>
+  <app-article-body [article]="article"></app-article-body>
+</article>

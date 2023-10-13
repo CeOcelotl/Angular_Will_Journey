@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Article } from './article';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,22 +7,21 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ArticleService {
+  onDeleteArticle(article: Article): Observable<Article> {
+    return this.http.delete<Article>(`${this.apiUrl}/${article.id}`);
+}
 
-  constructor(private http: HttpClient) {
-
+  getArticle():Observable<Article[]> {
+    return this.http.get<Article[]>(`${this.apiUrl}`);
   }
-  getData(): Observable<Article[]> {
-    return this.http.get<Article[]>('http://localhost:4200/api/articles.json');
-  }
-  run() {
-    console.log('DataService');
-  }
-
-  doDelete(item: Article) {
-    return this.http.delete('http://localhost:4200/api/articles/' + item.id);
+  setUrl(arg: string) {
+    this.apiUrl = arg
   }
 
-  doModify(post: Article) {
-    return this.http.put('http://localhost:4200/api/articles/' + post.id, post);
-  }
+  private http: HttpClient = inject(HttpClient);
+  private apiUrl = 'http://localhost:4200/api/articles';
+
+  // getData(): Observable<Article[]> {
+  //   return this.http.get<Article[]>(`${this.apiUrl}`);
+  // }
 }
